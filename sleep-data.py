@@ -33,7 +33,8 @@ def format_time_readable(timestamp):
     )
 
 def format_date_for_name(sleep_date):
-    return datetime.strptime(sleep_date, "%Y-%m-%d").strftime("%d.%m.%Y") if sleep_date else "Unknown"
+    if not sleep_date: return "Unknown"
+    return sleep_date.replace('-', '/') # 变成 2026/01/07
 
 def sleep_data_exists(client, database_id, sleep_date):
     # [修复] 这里的 property 必须是 "长日期" (Long Date)
